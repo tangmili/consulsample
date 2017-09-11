@@ -13,6 +13,7 @@
         <module>jamesclient</module>
         <module>service-robbin</module>
         <module>springcloud-config-server</module>
+        <module>easyrule-engine</module>
     </modules>
 <!--
 
