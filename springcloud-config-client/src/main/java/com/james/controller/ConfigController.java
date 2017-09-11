@@ -4,9 +4,13 @@
  */
 package com.james.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RefreshScope
+@Api("CONFIG-CONTROLLER")
 public class ConfigController {
 
     @Value("${neo.hello}")
@@ -27,7 +32,10 @@ public class ConfigController {
     @Value("${spring.cloud.config.profile}")
     private String configDev  = "www";
 
-    @RequestMapping("/helloconfig")
+    @ApiOperation("配置信息读取测试")
+    // @ApiImplicitParam(paramType = "header", value = "server token", name = HttpHeaders.AUTHORIZATION, required = true, dataType = "string")
+    @GetMapping("/bills")
+    @RequestMapping(value = "/helloconfig", method = RequestMethod.GET)
     public String from() {
         String configInfo = "configName is[" + configName + "] configProfile is[" + configDev + "]"
                             + " Test property neo.hello value is [" + hello + "]";
