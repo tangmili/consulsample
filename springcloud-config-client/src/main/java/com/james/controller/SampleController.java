@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @version Id: SampleController.java, v 0.1 17/9/1 上午11:23 militang Exp $$
  */
 @RestController
+@RequestMapping(value = "/books")
 public class SampleController {
     @RequestMapping("/hi")
     public ResPonse home() {

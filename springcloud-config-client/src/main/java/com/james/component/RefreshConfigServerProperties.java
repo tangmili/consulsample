@@ -9,6 +9,7 @@ import java.net.URI;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -31,13 +32,15 @@ public class RefreshConfigServerProperties {
     private String       svrport;
 
     //@Scheduled(cron = "5 * * * * ?")
-    @Scheduled(fixedRate = 3000)
+    @Scheduled(fixedRate = 30000)
     public void propertrefresh() {
         log.info("job   excutting {}", DateTime.now().toString());
-        URI refreshrsult = restTemplate.postForLocation("http://localhost:" + svrport + "/refresh",
-            null);
-        log.info("URI ={}", refreshrsult);
-
+        String url = "http://localhost:" + svrport + "/refresh";
+        ResponseEntity<String> resultstr = restTemplate.postForEntity(url, null, String.class);
+        String resultstrinfo = resultstr.getBody();
+        //    URI refreshrsult = restTemplate.postForLocation("http://localhost:" + svrport + "/refresh",
+        //      null);
+        log.info("resultstrinfo ={}", resultstrinfo);
     }
 
 }
