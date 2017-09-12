@@ -14,6 +14,7 @@
         <module>service-robbin</module>
         <module>springcloud-config-server</module>
         <module>redislock</module>
+        <module>easyrule-engine</module>
     </modules>
 <!--
 
